@@ -1,0 +1,25 @@
+repos:
+  - repo: https://github.com/myint/autoflake
+    rev: v2.1.1  # Use the latest version
+    hooks:
+      - id: autoflake
+        args: [ "--remove-all-unused-imports", "--ignore-init-module-imports", "--remove-unused-variables", "--check" ]
+        files: \.py$
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.7.0  # Use the latest version of Ruff
+    hooks:
+      - id: ruff
+        args: [
+          "--fix",  # Automatically fix issues where possible
+          "--line-length=88",  # Set the line length
+          "--select", "E,W,F,C90,N,Q",  # Select the specific rules
+          "--ignore", "E501,F401,F403"  # Ignore specific rules
+        ]
+
+  - repo: https://github.com/PyCQA/docformatter
+    rev: v1.7.5
+    hooks:
+      - id: docformatter
+        args: [ "--in-place", "--wrap-summaries=88", "--wrap-descriptions=88" ]
+        files: \.py$
